@@ -1,6 +1,5 @@
 var playerInput;
 var playerChoice;
-var cpuInput;
 var cpuChoice;
 var choices = ["r", "p", "s"];
 
@@ -17,6 +16,8 @@ function playGame() {
 	getPlayerInput();
 	getCpuInput();
 	findWinner();
+	displayScore();
+	askToPlayAgain();
 }
 
 function getPlayerInput() {
@@ -41,36 +42,58 @@ function checkPlayerInput() {
 }
 
 function getCpuInput() {
-	cpuInput = Math.floor(Math.random() * 3);
-	console.log(cpuInput);
-	checkCpuInput();
-}
-
-function checkCpuInput() {
-	cpuChoice = choices[cpuInput];
+	cpuChoice = choices[Math.floor(Math.random() * 3)];
+	alert("CPU picked: " + cpuChoice);
 	console.log("CpuChoice is: " + cpuChoice);
 }
 
 function findWinner() {
 	if (playerChoice === cpuChoice) {
+		alert("TIE!");
+		score.ties++;
 		console.log("TIE");
 	} else if (playerChoice === "r") {
 		if (cpuChoice === "p") {
+			alert("CPU WINS!");
+			score.losses++;
 			console.log("CPU wins");
 		} else {
+			alert("PLAYER WINS!");
+			score.wins++;
 			console.log("Player wins");
 		}
 	} else if (playerChoice === "p") {
 		if (cpuChoice === "s") {
+			alert("CPU WINS!");
+			score.losses++;
 			console.log("CPU wins");
 		} else {
+			alert("PLAYER WINS!");
+			score.wins++;
 			console.log("Player wins");
 		}
 	} else if (playerChoice === "s") {
 		if (cpuChoice === "r") {
+			alert("CPU WINS!");
+			score.losses++;
 			console.log("CPU wins");
 		} else {
+			alert("PLAYER WINS!");
+			score.wins++;
 			console.log("Player wins");
 		}
+	}
+}
+
+function displayScore() {
+	alert(
+		"WINS: " + score.wins + " LOSSES: " + score.losses + " TIES: " + score.ties
+	);
+}
+
+function askToPlayAgain() {
+	playAgain = confirm("Play again?");
+	if (playAgain) {
+		playGame();
 	}
 }
