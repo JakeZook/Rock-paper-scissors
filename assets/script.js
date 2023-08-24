@@ -16,6 +16,7 @@ function playGame() {
 	console.clear();
 	getPlayerInput();
 	getCpuInput();
+	findWinner();
 }
 
 function getPlayerInput() {
@@ -48,4 +49,28 @@ function getCpuInput() {
 function checkCpuInput() {
 	cpuChoice = choices[cpuInput];
 	console.log("CpuChoice is: " + cpuChoice);
+}
+
+function findWinner() {
+	if (playerChoice === cpuChoice) {
+		console.log("TIE");
+	} else if (playerChoice === "r") {
+		if (cpuChoice === "p") {
+			console.log("CPU wins");
+		} else {
+			console.log("Player wins");
+		}
+	} else if (playerChoice === "p") {
+		if (cpuChoice === "s") {
+			console.log("CPU wins");
+		} else {
+			console.log("Player wins");
+		}
+	} else if (playerChoice === "s") {
+		if (cpuChoice === "r") {
+			console.log("CPU wins");
+		} else {
+			console.log("Player wins");
+		}
+	}
 }
